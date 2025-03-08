@@ -1,8 +1,8 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <chrono>
-#include <algorithm>
+#include <iostream> // For input and output operations
+#include <cstdlib> // For random number generation
+#include <ctime> // For seeding the random number generator with current time
+#include <chrono> // For measuring execution time
+#include <algorithm> // For standard algorithms like std::copy
 
 using namespace std;
 
@@ -11,7 +11,7 @@ void generateRandomArray(int arr[], int N)
 {
     for (int i = 0; i < N; i++)
     {
-        arr[i] = rand() % 1000 + 1;
+        arr[i] = rand() % 1000 + 1; // Generate random number in range [1,1000]
     }
 
     // Display the generated array
@@ -41,12 +41,13 @@ void selectionSort(int arr[], int N)
         int minIndex = i;
         for (int j = i + 1; j < N; j++)
         {
-            if (arr[j] < arr[minIndex])
+            if (arr[j] < arr[minIndex])  // Find the minimum element
             {
                 minIndex = j;
             }
         }
-        swap(arr[i], arr[minIndex]);
+        swap(arr[i], arr[minIndex]); // Swap minimum element with first element of the unsorted part
+    }
     }
 }
 
@@ -56,8 +57,8 @@ void merge(int arr[], int left, int mid, int right)
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    int *L = new int[n1];
-    int *R = new int[n2];
+    int *L = new int[n1]; // Left subarray
+    int *R = new int[n2]; // Right subarray
 
     for (int i = 0; i < n1; i++)
         L[i] = arr[left + i];
@@ -80,6 +81,7 @@ void merge(int arr[], int left, int mid, int right)
         k++;
     }
 
+// Copy remaining elements of L[], if any
     while (i < n1)
     {
         arr[k] = L[i];
@@ -87,6 +89,7 @@ void merge(int arr[], int left, int mid, int right)
         k++;
     }
 
+// Copy remaining elements of R[], if any   
     while (j < n2)
     {
         arr[k] = R[j];
@@ -115,14 +118,14 @@ int binarySearch(int arr[], int left, int right, int target)
     while (left <= right)
     {
         int mid = left + (right - left) / 2;
-        if (arr[mid] == target)
+        if (arr[mid] == target) // Found the target
             return mid;
         if (arr[mid] < target)
             left = mid + 1;
         else
             right = mid - 1;
     }
-    return -1;
+    return -1; // Target not found
 }
 
 // Interpolation Search Algorithm
